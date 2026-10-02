@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Register a member</h1>
+<form class="panel form" method="post">
+<label>Full name<input name="name" required maxlength="150"></label>
+<label>Email address<input name="email" type="email" required maxlength="150"></label>
+<button class="button">Register member</button>
+<a href="{{ url_for('members') }}">Cancel</a>
+</form>
+{% endblock %}
