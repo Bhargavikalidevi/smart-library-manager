@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Reports</h1>
+<div class="stat report-stat"><span>Outstanding fines on all loans (calculated)</span><strong>₹{{ "%.2f"|format(total_fines) }}</strong></div>
+<h2>Overdue books</h2>
+<div class="table-wrap"><table><thead><tr><th>Member</th><th>Book</th><th>Due date</th><th>Days overdue</th><th>Fine</th></tr></thead><tbody>
+{% for loan in overdue %}<tr><td>{{ loan.member.name }}</td><td>{{ loan.book.title }}</td><td>{{ loan.due_date }}</td><td>{{ (today - loan.due_date).days if today else (now - loan.due_date).days if now else (loan.fine / 5)|int }}</td><td>₹{{ "%.2f"|format(loan.fine) }}</td></tr>
+{% else %}<tr><td colspan="5" class="empty">No overdue books. Great!</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
