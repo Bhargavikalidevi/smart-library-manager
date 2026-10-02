@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Smart Library Manager{% endblock %}
+{% block content %}
+<h1>Library Dashboard</h1>
+<p class="muted">A quick overview of your library.</p>
+<section class="cards">
+  <div class="stat"><span>Total book titles</span><strong>{{ books }}</strong></div>
+  <div class="stat"><span>Available copies</span><strong>{{ available }}</strong></div>
+  <div class="stat"><span>Registered members</span><strong>{{ members }}</strong></div>
+  <div class="stat"><span>Active loans</span><strong>{{ active }}</strong></div>
+  <div class="stat"><span>Overdue books</span><strong>{{ overdue }}</strong></div>
+</section>
+<div class="panel">
+  <h2>Getting started</h2>
+  <p>Add books and members, then use Issue / Return to track borrowing. Loans are due after 14 days; overdue fines are calculated at ₹5 per day.</p>
+  <a class="button" href="{{ url_for('books') }}">Manage books</a>
+  <a class="button secondary" href="{{ url_for('issue_book') }}">Issue a book</a>
+</div>
+{% endblock %}
