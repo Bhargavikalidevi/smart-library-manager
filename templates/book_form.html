@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add a book</h1>
+<form class="panel form" method="post">
+<label>Book title<input name="title" required maxlength="200"></label>
+<label>Author<input name="author" required maxlength="150"></label>
+<label>ISBN<input name="isbn" required maxlength="30"></label>
+<label>Number of copies<input name="total_copies" type="number" min="1" value="1" required></label>
+<button class="button">Save book</button>
+<a href="{{ url_for('books') }}">Cancel</a>
+</form>
+{% endblock %}
