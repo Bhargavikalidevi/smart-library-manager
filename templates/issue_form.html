@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Issue a book</h1>
+<form class="panel form" method="post">
+<label>Member<select name="member_id" required><option value="">Choose member</option>{% for m in members %}<option value="{{ m.id }}">{{ m.name }} ({{ m.email }})</option>{% endfor %}</select></label>
+<label>Available book<select name="book_id" required><option value="">Choose book</option>{% for b in books %}<option value="{{ b.id }}">{{ b.title }} — {{ b.author }} ({{ b.available_copies }} available)</option>{% endfor %}</select></label>
+<p class="muted">Due date is automatically set to 14 days from today.</p>
+<button class="button">Issue book</button>
+<a href="{{ url_for('loans') }}">Cancel</a>
+</form>
+{% endblock %}
