@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-heading"><h1>Issue / Return</h1><a class="button" href="{{ url_for('issue_book') }}">+ Issue book</a></div>
+<div class="table-wrap"><table><thead><tr><th>Member</th><th>Book</th><th>Issued</th><th>Due</th><th>Status</th><th>Fine</th><th>Action</th></tr></thead><tbody>
+{% for loan in loans %}
+<tr><td>{{ loan.member.name }}</td><td>{{ loan.book.title }}</td><td>{{ loan.issue_date }}</td><td>{{ loan.due_date }}</td><td><span class="pill">{{ loan.status }}</span></td><td>₹{{ "%.2f"|format(loan.fine) }}</td><td>{% if not loan.return_date %}<form method="post" action="{{ url_for('return_book', loan_id=loan.id) }}"><button class="link">Return</button></form>{% else %}—{% endif %}</td></tr>
+{% else %}<tr><td colspan="7" class="empty">No transactions yet.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}
